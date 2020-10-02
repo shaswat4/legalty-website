@@ -15,3 +15,15 @@ class Post( models.Model):
     def get_absolute_url(self):
         return reverse('article-details' , args=(str(self.id)))
 
+
+class Post_reply (models.Model):
+    title_tag = models.CharField(max_length=225)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_id = models.ForeignKey( Post , on_delete=models.CASCADE)
+    body = models.TextField()
+
+
+    def get_absolute_url(self):
+        return reverse('article-details', args=(str(self.id)))
+
+
