@@ -8,6 +8,7 @@ class Post( models.Model):
     title_tag = models.CharField(max_length=225)
     author = models.ForeignKey( User , on_delete=models.CASCADE )
     body = models.TextField()
+    #publish = models.DateTimeField( auto_now_add = True , name='date published')
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
@@ -22,8 +23,5 @@ class Post_reply (models.Model):
     post_id = models.ForeignKey( Post , on_delete=models.CASCADE)
     body = models.TextField()
 
-
-    def get_absolute_url(self):
-        return reverse('article-details', args=(str(self.id)))
 
 

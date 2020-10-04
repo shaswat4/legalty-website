@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import ListView , DetailView , CreateView
-from .models import Post
+from .models import Post , Post_reply
 from .forms import PostForm , PostCreateForm
+from django.http import HttpResponse, HttpResponseNotFound
+
 
 
 class HomeView( ListView ):
@@ -12,11 +14,20 @@ class ArticleDetailView( DetailView):
     model = Post
     template_name = 'details.html'
 
-class CreatePost ( CreateView):
-    model = Post
-    form_class = PostForm
-    template_name= 'create_post.html'
-    #fields  = '__all__'
+def postDetails(request, pk):
+    try:
+        post = Post.objects.get(pk=pk)
+    except Post.DoesNotExist:
+        return HttpResponseNotFound("Page not found")
+
+    queryset = Post_reply.objects.filter( post_id__pk = pk )
+
+    context = {
+        'post': post ,
+        'replyset' : queryset
+    }
+
+    return render(request, 'details.html', context)
 
 
 def create_post(request) :
@@ -45,6 +56,17 @@ class CreatePost2 ( CreateView):
     def form_valid(self, form):
        form.instance.author = self.request.user
        return super( CreatePost2 , self).form_valid(form)
+
+
+class CreateReply ( CreateView):
+    model = Post
+    form_class = PostCreateForm
+    template_name= 'create_post.html'
+    #fields  = '__all__'
+
+    def form_valid(self, form):
+       form.instance.author = self.request.user
+       return super( CreateReply , self).form_valid(form)
 
 
 """
