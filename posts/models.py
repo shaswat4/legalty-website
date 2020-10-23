@@ -5,6 +5,10 @@ from django.utils import timezone
 
 #To Do:-
 # add togs or category models
+# remove title tag
+# create side bar
+# add pagination
+#add likes
 
 class Post( models.Model):
     STATUS_CHOICES = (
@@ -20,6 +24,8 @@ class Post( models.Model):
 
     slug = models.SlugField( max_length= 300 , unique_for_date='created' )
 
+    likes = models.ManyToManyField( User , related_name='post_likes')
+
     class Meta:
         ordering = ('-created',)
 
@@ -27,7 +33,7 @@ class Post( models.Model):
         return self.title # + ' | ' + str(self.author)
 
     def get_absolute_url(self):
-        print((self.id))
+        #print((self.id))
         return reverse('post-details' , args=(self.pk , ))
 
 
