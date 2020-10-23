@@ -10,7 +10,7 @@
 <small> by {{ post.author.username }} | Posted on {{ post.created }} </small>
 <hr>
 <br/>
-<p> {{ post.body }}</p>
+<p> {{ post.body|safe }}</p>
 <br/>
 
 

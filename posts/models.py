@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 #To Do:-
 # add togs or category models
@@ -18,7 +19,8 @@ class Post( models.Model):
     title = models.CharField( max_length = 250 )
     title_tag = models.CharField(max_length=250)
     author = models.ForeignKey( User , on_delete=models.CASCADE )
-    body = models.TextField()
+    #body = models.TextField()
+    body = RichTextField   ( blank=True , null=True)
     #publish = models.DateTimeField( auto_now_add = True , name='date published')
     created = models.DateTimeField( default= timezone.now )
 
