@@ -24,7 +24,7 @@ class Post( models.Model):
         ordering = ('-created',)
 
     def __str__(self):
-        return self.title + ' | ' + str(self.author)
+        return self.title # + ' | ' + str(self.author)
 
     def get_absolute_url(self):
         return reverse('article-details' , args=(str(self.id)))
