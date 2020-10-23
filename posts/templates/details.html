@@ -7,7 +7,7 @@
 {% block content %}
 
 <h1>{{ post.title}}</h1>
-<small> by {{ post.author.username }} </small>
+<small> by {{ post.author.username }} | Posted on {{ post.created }} </small>
 <hr>
 <br/>
 <p> {{ post.body }}</p>
