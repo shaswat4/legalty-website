@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import Post
+from .models import Post , Post_reply
 
 class PostForm ( forms.ModelForm):
     class Meta :
@@ -25,3 +25,11 @@ class PostCreateForm ( forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control'})
         }
 
+class Post_replyCreateForm ( forms.ModelForm):
+    class Meta:
+        model = Post_reply
+        fields = { 'body' }
+
+    widgets = {
+        'body': forms.Textarea(attrs={'class': 'form-control'})
+    }

@@ -40,10 +40,14 @@ class Post( models.Model):
 
 
 class Post_reply (models.Model):
-    title_tag = models.CharField(max_length=225)
+    #title_tag = models.CharField(max_length=225 )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    post_id = models.ForeignKey( Post , on_delete=models.CASCADE)
+    post_id = models.ForeignKey( Post , on_delete=models.CASCADE , related_name="comments")
     body = models.TextField()
+    date_added = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        ordering = ('date_added' , )
 
-
+    def __str__(self):
+        return  '%s | %s' % (self.post_id.title , self.author)

@@ -12,4 +12,10 @@ class PostAdmin( admin.ModelAdmin ):
     prepopulated_fields = { 'slug':('title' , )  }
 
 
-admin.site.register(Post_reply)
+#admin.site.register(Post_reply)
+
+@admin.register(Post_reply)
+class CommentAdmin( admin.ModelAdmin ):
+    list_display = ( 'author' , 'post_id', 'date_added' , 'body')
+    list_filter = ('date_added' , )
+    search_fields = ('author' , 'body')

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ {{ post.title}} | Legalty
+{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+    .box{
+        position: absolute;
+        left: 50px;
+        width: calc(80% - 100px);
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 5px;
+        text-align: center;
+    }
+
+</style>
+
+<h1>{{ post.title}}</h1>
+<small> by {{ post.author.username }} | Posted on {{ post.created }} </small>
+
+<br/>
+<div class="box">
+<p> {{ post.body|safe }}</p>
+</div>
+<br/>
+
+
+    <form method="POST">
+        <div class="form-group">
+
+        {% csrf_token %}{{ form.as_p }}
+
+        <button class="btn btn-secondary"> submit comment </button>
+        </div>
+    </form>
+
+<h4>comments</h4>
+<ul>
+    {% for reply in  replyset %}
+
+    <li>
+        <h5> By {{ reply.author.username }} - {{ reply.date_added }} </h5>
+        <p> {{ reply.body }}</p>
+    </li>
+    {% endfor %}
+</ul>
+<br>
+
+
+ {% endblock %}
