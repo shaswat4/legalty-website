@@ -9,6 +9,8 @@ from django.http import HttpResponse, HttpResponseNotFound
 class HomeView( ListView ):
     model = Post
     template_name = 'home.html'
+    paginate_by = 8
+
 
 class ArticleDetailView( DetailView):
     model = Post

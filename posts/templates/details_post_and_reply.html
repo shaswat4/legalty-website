@@ -8,7 +8,6 @@
 
 <style type="text/css">
     .box{
-        position: absolute;
         left: 50px;
         width: calc(80% - 100px);
         border: 1px solid black;
@@ -27,8 +26,8 @@
 <p> {{ post.body|safe }}</p>
 </div>
 <br/>
-
-
+<br/>
+<div>
     <form method="POST">
         <div class="form-group">
 
@@ -37,7 +36,7 @@
         <button class="btn btn-secondary"> submit comment </button>
         </div>
     </form>
-
+</div>
 <h4>comments</h4>
 <ul>
     {% for reply in  replyset %}
