@@ -8,8 +8,13 @@ from ckeditor.fields import RichTextField
 # add togs or category models
 # remove title tag
 # create side bar
-# add pagination
 #add likes
+# add likes
+# add edit and delete
+#link to profile
+# profile page
+# create search
+# create lawyer directory
 
 class Post( models.Model):
     STATUS_CHOICES = (
