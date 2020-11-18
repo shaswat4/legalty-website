@@ -7,10 +7,12 @@ from django.utils import timezone
 class LawyerProfile( models.Model ):
     user = models.OneToOneField( User , null=True , on_delete = models.CASCADE )
     about = models.TextField()
+    firstName = models.CharField(max_length=100 , default = "" )
+    lastName = models.CharField(max_length=100, default="")
     speciality = models.CharField(max_length=100 , default = "" )
     court = models.CharField(max_length=100 , default = "" )
     fees = models.CharField(max_length=100 , default = "")
-    experience = models.IntegerField(max_length=100 , default = 1)
+    experience = models.IntegerField( default = 1)
     area = models.CharField(max_length=100 , default = "")
 
 

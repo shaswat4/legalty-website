@@ -12,7 +12,6 @@ from ckeditor.fields import RichTextField
 # add likes
 # add edit and delete
 #link to profile
-# profile page
 # create search
 # create lawyer directory
 
@@ -56,3 +55,5 @@ class Post_reply (models.Model):
 
     def __str__(self):
         return  '%s | %s' % (self.post_id.title , self.author)
+
+
