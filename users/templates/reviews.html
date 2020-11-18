@@ -12,8 +12,10 @@
         width: calc(80% - 100px);
         border: 1px solid black;
         border-radius: 10px;
-        padding: 5px;
+        padding: 2px;
+        padding-left: 10px;
         text-align: left ;
+        margin :5px;
     }
 
 </style>
@@ -38,14 +40,14 @@
     </form>
 </div>
 
-<h4> User Reviews</h4>
+<h4> User Reviews:</h4>
 <ul>
     {% for review in  reviewset %}
 
-    <li>
-        <h5>By {{ review.author.username }} - {{ review.date_added }}</h5>
+    <div class="box">
+        <h5>By {{ review.author.username }} - Posted on {{ review.date_added }}</h5>
         <p> {{ review.body }}</p>
-    </li>
+    </div>
     {% endfor %}
 </ul>
 <br>
