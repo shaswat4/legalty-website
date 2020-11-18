@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ Reviews | Legalty
+{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+    .box{
+        left: 50px;
+        width: calc(80% - 100px);
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 5px;
+        text-align: left ;
+    }
+
+</style>
+
+<h1> Reviews </h1>
+
+<br/>
+
+<div>
+    <p><b>  Post a Review !  </b>   </p>
+</div>
+
+<div>
+    <form method="POST">
+        <div class="form-group">
+
+        {% csrf_token %}
+            {{ form.body }}
+
+        <button class="btn btn-secondary">Submit Review </button>
+        </div>
+    </form>
+</div>
+
+<h4> User Reviews</h4>
+<ul>
+    {% for review in  reviewset %}
+
+    <li>
+        <h5>By {{ review.author.username }} - {{ review.date_added }}</h5>
+        <p> {{ review.body }}</p>
+    </li>
+    {% endfor %}
+</ul>
+<br>
+
+
+ {% endblock %}

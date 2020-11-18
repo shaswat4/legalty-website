@@ -3,7 +3,7 @@ from django.views import generic
 from django.contrib.auth.forms import UserCreationForm , UserChangeForm
 from django.urls import reverse_lazy
 from .models import LawyerProfile , Review
-from .forms import  LawyerDetailForm
+from .forms import  LawyerDetailForm , ReviewForm
 from django.http import HttpResponse, HttpResponseNotFound ,  HttpResponseRedirect
 from django.views.generic import ListView , DetailView
 
@@ -62,6 +62,32 @@ def displayProfile( request , pk):
     }
 
     return render(request, 'profile.html', context)
+
+
+def reviewDisplay (request, pk):
+
+    form = ReviewForm( request.POST or None)
+
+    if form.is_valid():
+        form.instance.author = request.user
+        form.instance.lawyer_id = LawyerProfile.objects.get(pk=pk)
+        form.save()
+        form = ReviewForm()
+
+    try:
+        LawyerProfile.objects.get(pk=pk)
+    except LawyerProfile.DoesNotExist:
+        return HttpResponseNotFound("Page not found")
+
+    reviewset =  Review.objects.filter(  lawyer_id__pk=pk)
+
+    context = {
+        'form' : form ,
+        'reviewset': reviewset
+    }
+
+    return render(request, 'reviews.html', context)
+
 
 
 '''

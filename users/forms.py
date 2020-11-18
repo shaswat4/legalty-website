@@ -1,6 +1,6 @@
 
 from django import forms
-from .models import LawyerProfile
+from .models import LawyerProfile , Review
 from django.contrib.auth.models import User
 
 
@@ -40,3 +40,18 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = []
+
+class ReviewForm( forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = [
+            'body'
+        ]
+
+        widgets = {
+            'body' : forms.Textarea(attrs={'class': 'form-control'})
+        }
+
+
+
