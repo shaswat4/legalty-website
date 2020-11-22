@@ -23,7 +23,20 @@
 {% endfor %}
 </ul>
 
+<br/>
+<button type="button" class="btn btn-link">
+     <a href="{% url 'home'   %}" >
+        See More Questions
+    </a>
+</button>
 
+or
+
+<button type="button" class="btn btn-link">
+     <a href="{% url 'create_post' %}" >
+        Ask a a legal Query
+    </a>
+</button>
 
 
   {% endblock %}
