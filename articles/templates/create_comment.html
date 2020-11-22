@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ Write a comment | Legalty
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated  %}
+    <h1>add comment</h1>
+
+    <form method="POST">
+        <div class="form-group">
+
+        {% csrf_token %}{{ form.media }}{{ form.as_p }}
+
+        <button class="btn btn-secondary"> submit comment </button>
+        </div>
+    </form>
+
+{% else  %}
+
+<h2> please login or register to submit comment</h2>
+
+{% endif %}
+
+
+
+ {% endblock %}
+

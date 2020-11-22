@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ {{ post.title}} | Legalty
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ post.title}}</h1>
+<small> by {{ post.author.username }} | Posted on {{ post.created }} </small>
+<hr>
+<br/>
+<p> {{ post.body|safe }}</p>
+<br/>
+
+
+ {% include 'reply.html' %}
+<a href="{% url 'home' %}" class="btn btn-success" > back </a>
+
+ {% endblock %}
+
