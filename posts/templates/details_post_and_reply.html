@@ -31,13 +31,20 @@
     <form method="POST">
         <div class="form-group">
 
-        {% csrf_token %}{{ form.as_p }}
-
+        {% csrf_token %}{{ form.body }}
+        <br/>
         <button class="btn btn-secondary"> submit comment </button>
         </div>
     </form>
 </div>
-<h4>comments</h4>
+
+{% if replyset %}
+    <h4>comments</h4>
+{% else%}
+    <h4>No comments yet :(</h4>
+{% endif %}
+
+
 <ul>
     {% for reply in  replyset %}
 
