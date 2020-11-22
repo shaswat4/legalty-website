@@ -18,3 +18,7 @@ def trueHome(request ):
     }
 
     return render(request, 'static_home.html', context)
+
+def about_us(request ):
+
+    return render(request, 'about.html', {})
