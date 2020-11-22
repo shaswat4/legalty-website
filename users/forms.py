@@ -50,7 +50,7 @@ class ReviewForm( forms.ModelForm):
         ]
 
         widgets = {
-            'body' : forms.Textarea(attrs={'class': 'form-control'})
+            'body' : forms.Textarea(attrs={'class': 'form-control'  ,  'rows':3 , 'cols': 5})
         }
 
 

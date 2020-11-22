@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Users</h1>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name </th>
+      <th scope="col">Speciality</th>
+      <th scope="col">Area</th>
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+
+
+      {% for user in object_list %}
+
+      <tr>
+
+      <th scope="row">{{ forloop.counter }} </th>
+
+      <td> <a href="{% url 'display-profile' user.pk  %}" >
+          {{ user.firstName }} {{ user.lastName   }}   </a> </td>
+      <td>  {{ user.speciality }}   </td>
+      <td>  {{ user.area }}  </td>
+
+
+      </tr>
+
+    {% endfor %}
+
+
+  </tbody>
+</table>
+
+
+{% if is_paginated %}
+  <nav aria-label="Page navigation conatiner"></nav>
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+    {% endif %}
+    {% if page_obj.has_next %}
+    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+    {% endif %}
+  </ul>
+  </nav>
+</div>
+{% endif %}
+
+
+  {% endblock %}
+
+{% block title %}
+Legalty
+{% endblock %}

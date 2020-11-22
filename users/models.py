@@ -15,6 +15,10 @@ class LawyerProfile( models.Model ):
     fees = models.CharField(max_length=100 , default = "")
     experience = models.IntegerField( default = 1)
     area = models.CharField(max_length=100 , default = "")
+    date_added = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ('-date_added' , )
 
 
 

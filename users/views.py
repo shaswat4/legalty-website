@@ -52,13 +52,15 @@ def edit (request , pk ):
 def displayProfile( request , pk):
     try:
         form = LawyerProfile.objects.get(pk=pk)
+        reviewset = Review.objects.filter( lawyer_id__pk = pk )[0:4]
     except LawyerProfile.DoesNotExist:
         return HttpResponseNotFound("Page not found")
 
     #queryset = Post_reply.objects.filter(post_id__pk=pk)
 
     context = {
-        'form' : form
+        'form' : form ,
+        'reviewset' : reviewset
     }
 
     return render(request, 'profile.html', context)
@@ -87,6 +89,12 @@ def reviewDisplay (request, pk):
     }
 
     return render(request, 'reviews.html', context)
+
+
+class LawyerDir( generic.ListView ):
+    model = LawyerProfile
+    template_name = 'user_list.html'
+    paginate_by = 10
 
 
 

@@ -3,16 +3,60 @@
 
 {% block content %}
 
-<h1>profile</h1>
+<style type="text/css">
+    .box{
+        left: 50px;
+        width: calc(50%);
+        border: 1px solid black;
+        border-radius: 10px;
 
-<p>{{  form.firstName }} {{  form.lastName }} </p>
-<p> speciality : {{  form.speciality }} </p>
-<p> court :{{  form.court }}</p>
-<p> fees :{{  form.fees }}</p>
-<p> exprience :{{  form.experience }}</p>
-<p>locality : {{  form.area }}</p>
-<p> about me :{{  form.about }}</p>
+        padding-left : 20px;
+        text-align: left ;
+    }
 
+    .list{
+        width : calc ( 50% );
+        position:relative;
+        left:50%;
+
+    }
+
+</style>
+
+
+<h1>{{  form.firstName }} {{  form.lastName }}</h1>
+
+<div class="box">
+    <h4> speciality : {{  form.speciality }} </h4>
+    <H4> court :{{  form.court }}</H4>
+    <h4> fees :{{  form.fees }}</h4>
+    <h4> exprience :{{  form.experience }}</h4>
+    <h4> area : {{  form.area }}</h4>
+</div>
+
+<p><b> about me </b></p>
+<div class="box">
+    <p>
+        {{  form.about }}
+    </p>
+</div>
+
+
+
+<div class="list">
+    <p> <b> review </b></p>
+<ul class="list-group">
+{% for review in reviewset %}
+
+    <li class="list-group-item">
+        <b>By {{ review.author.username }} - Posted on {{ review.date_added }}</b>
+        <p> {{ review.body }}</p>
+    </li>
+
+
+{% endfor %}
+</ul>
+</div>
 
 
 {% endblock %}
