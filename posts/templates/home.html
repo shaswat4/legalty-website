@@ -9,8 +9,15 @@
 <ul class="list-group">
 {% for post in object_list %}
     <li class="list-group-item" > <a href="{% url 'details-post-and-reply' post.pk  %}" >
-        {{ post.title }} </a> by {{ post.author.first_name }} {{ post.author.last_name }} <br/>
-        {{ post.body|slice:':100' }}
+        {{ post.title }} </a>
+        {% if post.author.first_name   %}
+        by {{ post.author.first_name }} {{ post.author.last_name }}
+        {% else %}
+        by {{ post.author }}
+        {% endif %}
+        <br/>
+        <!--{{ post.body|slice:':100' }} -->
+        Posted on {{ post.created  }}
     </li>
 
 {% endfor %}
