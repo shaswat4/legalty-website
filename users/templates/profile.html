@@ -26,6 +26,14 @@
 
 <h1>{{  form.firstName }} {{  form.lastName }}</h1>
 
+<button type="button" class="btn btn-secondary">
+    <a href="{% url 'edit-profile' form.pk  %}" >
+        Edit profile
+    </a>
+</button>
+
+<br/>
+
 <div class="box">
     <h4> speciality : {{  form.speciality }} </h4>
     <H4> court :{{  form.court }}</H4>
@@ -43,7 +51,7 @@
 
 
 
-<div class="list">
+<div >
     <p> <b> review </b></p>
 <ul class="list-group">
 {% for review in reviewset %}
@@ -57,6 +65,12 @@
 {% endfor %}
 </ul>
 </div>
+
+<button type="button" class="btn btn-secondary">
+    <a href="{% url 'review' form.pk  %}" >
+        Add review
+    </a>
+</button>
 
 
 {% endblock %}

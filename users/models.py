@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 # Create your models here.
 
 # add reviews to lawyer profile models
@@ -19,6 +20,10 @@ class LawyerProfile( models.Model ):
 
     class Meta:
         ordering = ('-date_added' , )
+
+    def get_absolute_url(self):
+        #print((self.id))
+        return reverse('display-profile' , args=(self.pk , ))
 
 
 
