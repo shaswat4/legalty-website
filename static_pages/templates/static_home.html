@@ -3,11 +3,11 @@
 
 {% block content %}
 
-    <h1>Post</h1>
+    <h1>Home</h1>
 
 
 <ul class="list-group">
-{% for post in object_list %}
+{% for post in posts %}
     <li class="list-group-item" > <a href="{% url 'details-post-and-reply' post.pk  %}" >
         {{ post.title }} </a>
         {% if post.author.first_name   %}
@@ -23,20 +23,7 @@
 {% endfor %}
 </ul>
 
-{% if is_paginated %}
-  <nav aria-label="Page navigation conatiner"></nav>
-  <ul class="pagination justify-content-center">
-    {% if page_obj.has_previous %}
-    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-    {% endif %}
-    {% if page_obj.has_next %}
-    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
-    {% endif %}
-  </ul>
-  </nav>
-</div>
-{% endif %}
 
 
   {% endblock %}
